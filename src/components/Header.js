@@ -1,5 +1,5 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
 
 // 1. disney logo
 // 2. Nav bar
@@ -7,34 +7,34 @@ import styled from "styled-components";
 function Header() {
   return (
     <Nav>
-      <Logo src="/images/logo.svg" />
+      <Logo src='/images/logo.svg' />
       <NavMenu>
         <a>
-          <img src="/images/home-icon.svg" />
+          <img src='/images/home-icon.svg' />
           <span>HOME</span>
         </a>
         <a>
-          <img src="/images/search-icon.svg" />
+          <img src='/images/search-icon.svg' />
           <span>SEARCH</span>
         </a>
         <a>
-          <img src="/images/watchlist-icon.svg" />
+          <img src='/images/watchlist-icon.svg' />
           <span>WATCHLIST</span>
         </a>
         <a>
-          <img src="/images/original-icon.svg" />
+          <img src='/images/original-icon.svg' />
           <span>ORIGINALS</span>
         </a>
         <a>
-          <img src="/images/movie-icon.svg" />
+          <img src='/images/movie-icon.svg' />
           <span>MOVIES</span>
         </a>
         <a>
-          <img src="/images/series-icon.svg" />
+          <img src='/images/series-icon.svg' />
           <span>SERIES</span>
         </a>
       </NavMenu>
-      <UserImg src="/images/userimg.png" />
+      <UserImg src='/images/userimg.png' />
     </Nav>
   );
 }
@@ -48,6 +48,7 @@ const Nav = styled.div`
   display: flex;
   align-items: center;
   padding: 0 36px;
+  overflow-x: hidden;
 `;
 
 const Logo = styled.img`
@@ -77,7 +78,7 @@ const NavMenu = styled.div`
       position: relative;
 
       &:after {
-        content: "";
+        content: '';
         height: 2px;
         background: white;
         position: absolute;

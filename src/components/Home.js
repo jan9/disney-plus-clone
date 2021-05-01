@@ -1,8 +1,13 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
+import ImgSlider from './ImgSlider';
 
 function Home() {
-  return <Conatiner>Home</Conatiner>;
+  return (
+    <Conatiner>
+      <ImgSlider />
+    </Conatiner>
+  );
 }
 
 export default Home;
@@ -11,11 +16,12 @@ const Conatiner = styled.main`
   min-height: calc(100vh - 70px);
   padding: 0 calc(3.5vw + 5px);
   position: relative;
+  overflow-x: hidden;
 
   &:before {
-    background: url("/images/home-background.png") center center / cover
+    background: url('/images/home-background.png') center center / cover
       no-repeat fixed;
-    content: "";
+    content: '';
     position: absolute;
     top: 0;
     left: 0;
