@@ -1,11 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
 import ImgSlider from './ImgSlider';
+import Viewers from './Viewers';
 
 function Home() {
   return (
     <Conatiner>
       <ImgSlider />
+      <Viewers />
     </Conatiner>
   );
 }
