@@ -1,37 +1,59 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
+import { useParams } from 'react-router-dom';
+import db from '../firebase';
 
 function Detail() {
+  const { id } = useParams();
+  const [movie, setMovie] = useState();
+
+  useEffect(() => {
+    // grab the movie from DB
+    db.collection('movies')
+      .doc(id)
+      .get()
+      .then((doc) => {
+        if (doc.exists) {
+          // save the movie data
+          setMovie(doc.data());
+        } else {
+          // redirect to the home page
+        }
+      });
+  }, []);
+
+  console.log('Detail pg: ', movie);
+
   return (
     <Container>
-      <Background>
-        <img src='https://prod-ripcut-delivery.disney-plus.net/v1/variant/disney/4F39B7E16726ECF419DD7C49E011DD95099AA20A962B0B10AA1881A70661CE45/scale?width=1440&aspectRatio=1.78&format=jpeg' />
-      </Background>
-      <Title>
-        <img src='https://prod-ripcut-delivery.disney-plus.net/v1/variant/disney/D7AEE1F05D10FC37C873176AAA26F777FC1B71E7A6563F36C6B1B497CAB1CEC2/scale?width=1440&aspectRatio=1.78' />
-      </Title>
-      <Controls>
-        <PlayButton>
-          <img src='/images/play-icon-black.png' />
-          <span>PLAY</span>
-        </PlayButton>
-        <TrailerButton>
-          <img src='/images/play-icon-white.png' />
-          <span>TRAILER</span>
-        </TrailerButton>
-        <AddButton>
-          <span>+</span>
-        </AddButton>
-        <GroupWatchButton>
-          <img src='/images/group-icon.png' />
-        </GroupWatchButton>
-      </Controls>
-      <SubTitle>2018 . 7m. Family, Fantasy, Kids, Animation</SubTitle>
-      <Description>
-        A Chinese mom who's sad when her grown son leaves home gets another
-        chance at motherhood when one of her dumplings springs to life. But she
-        finds that nothing stay cute and small forever.
-      </Description>
+      {movie && (
+        <>
+          <Background>
+            <img src={movie.backgroundImg} />
+          </Background>
+          <Title>
+            <img src={movie.titleImg} />
+          </Title>
+          <Controls>
+            <PlayButton>
+              <img src='/images/play-icon-black.png' />
+              <span>PLAY</span>
+            </PlayButton>
+            <TrailerButton>
+              <img src='/images/play-icon-white.png' />
+              <span>TRAILER</span>
+            </TrailerButton>
+            <AddButton>
+              <span>+</span>
+            </AddButton>
+            <GroupWatchButton>
+              <img src='/images/group-icon.png' />
+            </GroupWatchButton>
+          </Controls>
+          <SubTitle>{movie.subTitle}</SubTitle>
+          <Description>{movie.description}</Description>
+        </>
+      )}
     </Container>
   );
 }
@@ -60,6 +82,7 @@ const Background = styled.div`
 `;
 
 const Title = styled.div`
+  margin-top: 20px;
   height: 30vh;
   min-height: 170px;
   width: 35vw;
@@ -72,6 +95,7 @@ const Title = styled.div`
 `;
 
 const Controls = styled.div`
+  margin-top: 20px;
   display: flex;
   align-items: center;
 `;
@@ -135,4 +159,5 @@ const Description = styled.div`
   line-height: 1.2;
   font-size: 20px;
   margin-top: 16px;
+  width: 60%;
 `;
